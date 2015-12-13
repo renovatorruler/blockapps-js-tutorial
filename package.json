@@ -17,8 +17,16 @@
   },
   "homepage": "https://github.com/prashantpawar/blockapps-js-tutorial#readme",
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "browser-sync": "^2.10.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }
