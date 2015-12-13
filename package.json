@@ -1,0 +1,24 @@
+{
+  "name": "blockapps-js-tutorial",
+  "version": "1.0.0",
+  "description": "Tutorial for blockapps-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashantpawar/blockapps-js-tutorial.git"
+  },
+  "author": "Prashant Singh Pawar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prashantpawar/blockapps-js-tutorial/issues"
+  },
+  "homepage": "https://github.com/prashantpawar/blockapps-js-tutorial#readme",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1"
+  }
+}
