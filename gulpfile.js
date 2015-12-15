@@ -1,12 +1,12 @@
+var gulp = require("gulp");
+var webpack = require("webpack");
+var WebpackDevServer = require("webpack-dev-server");
+
 var paths = {
  scripts: ['app/scripts/**/*.js'],
  html: ['app/index.html', '!app/test.html'], 
  dist: 'dist'
 };
-
-var gulp = require("gulp");
-var browserSync = require('browser-sync').create();
-
 
 // Include Our Plugins
 var babel = require("gulp-babel");
@@ -24,15 +24,25 @@ gulp.task("dist", function () {
     .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task("webpack", function(callback) {
+    // run webpack
+    webpack({
+        // configuration
+    }, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
+});
+
+
 // Static Server + watching scss/html files
 gulp.task('serve', ['babel'], function() {
 
-    browserSync.init({
-        server: paths.dist
-    });
-
     gulp.watch(paths.scripts, ['babel']);
-    gulp.watch(paths.html, ['dist']).on('change', browserSync.reload);
+    gulp.watch(paths.html, ['dist']);
 });
 
 // Default Task
