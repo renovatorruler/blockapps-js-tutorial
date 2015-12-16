@@ -1,4 +1,5 @@
 var gulp = require("gulp");
+var gutil = require("gulp-util");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
 
@@ -28,6 +29,25 @@ gulp.task("webpack", function(callback) {
     // run webpack
     webpack({
         // configuration
+        context: __dirname + "/app",
+        entry: {
+            app: './client/index.js'
+        },
+        output: {
+            path: __dirname + "/dist",
+            filename: "application.bundle.js"
+        },
+        module: {
+            preLoaders: [
+                {test: /\.js$/, loader: 'eslint-loader', exclude: nodeModulesDir}
+            ],
+            loaders: [
+                {test: /\.js$/, loader: 'babel-loader!eslint-loader', exclude: nodeModulesDir}, // keep node modules out of here or it gets really slow.
+                {test: /\.css$/, loader: 'style-loader!css-loader'},
+                {test: /\.html$/, loader: 'ngtemplate!html-loader', exclude: nodeModulesDir},
+                {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' } // inline base64 URLs for <=8k images, direct URLs for the rest
+            ]
+        }
     }, function(err, stats) {
         if(err) throw new gutil.PluginError("webpack", err);
         gutil.log("[webpack]", stats.toString({
