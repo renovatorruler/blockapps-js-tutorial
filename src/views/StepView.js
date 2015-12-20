@@ -1,9 +1,12 @@
 import React from 'react'
 
 export class StepView extends React.Component {
+    static propTypes = {
+      params: React.PropTypes.object.isRequired
+    }
     render () {
       return (
-          <p>This is the page 1 of the tutorial</p>
+          <p>This is the page { this.props.params.step } of the tutorial</p>
       )
     }
 }
