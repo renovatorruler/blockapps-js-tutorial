@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script type="text/javascript" src="libs/blockapps-min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      var blockapps = require('blockapps-js');
+      var faucet = blockapps.routes.faucet;
+      var Account = blockapps.ethbase.Account;
+
+      var address = "0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3"
+
+      function updateBalance() {
+        Account(address).balance.then(function (balance) {
+          document.getElementById("balance").innerHTML = balance.toString();
+        });
+      }
+
+      function getEthers() {
+        faucet(address).then(function () {
+          updateBalance();
+        });
+      }
+    </script>
+  </head>
+  <body onload="updateBalance()">
+    Balance:
+    <span id="balance"></span>
+    <button onclick="getEthers()">Get Ethers</button>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <script type="text/javascript" src="libs/blockapps-min.js"></script>
+    <script type="text/javascript">
+      var blockapps = require('blockapps-js');
+      var Account = blockapps.ethbase.Account;
+
+      var address = "16ae8aaf39a18a3035c7bf71f14c507eda83d3e3"
+
+      Account(address).balance.then(function (balance) {
+        document.getElementById("balance").innerHTML = balance.toString();
+      });
+    </script>
+  </head>
+  <body>
+    Welcome
+    <div id="balance"></div>
+  </body>
+</html>
