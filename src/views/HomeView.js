@@ -36,7 +36,7 @@ export class HomeView extends React.Component {
           Double (Async)
         </button>
         <hr />
-        <Link to='/about'>Go To About View</Link>
+        <Link to='/tutorial/step/1'>Go To the Tutorial</Link>
       </div>
     )
   }
