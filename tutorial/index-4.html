@@ -10,16 +10,16 @@
       var Transaction = blockapps.ethbase.Transaction;
       var ethValue = blockapps.ethbase.Units.ethValue
 
-      var addressTo = "0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3"
+      var addressTo = "0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3";
+      var addressFrom = "0xe1fd0d4a52b75a694de8b55528ad48e2e2cf7859";
       var privkeyFrom = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281"
 
       function sendEthers() {
         var tx = Transaction({
-          "value": ethValue(1).in("ether")
+          "value": ethValue(10000).in("ether")
         });
 
         tx.send(privkeyFrom, addressTo).then(function (result) {
-          console.log(result);
           updateBalance();
         });
       }
@@ -28,7 +28,7 @@
         Account(addressTo).balance.then(function (balance) {
           $("#balanceA").html(balance.toString());
         });
-        Account(privkeyFrom).balance.then(function (balance) {
+        Account(addressFrom).balance.then(function (balance) {
           $("#balanceB").html(balance.toString());
         });
       }

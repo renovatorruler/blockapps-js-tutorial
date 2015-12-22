@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script type="text/javascript" src="libs/blockapps.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      //In this step we will deploy a contract
+      var blockapps = require('blockapps-js');
+      var Solidity = blockapps.Solidity;
+
+      var code = 'contract SimpleStorage {' +
+        'uint storedData;' +
+        'function set(uint x) {' +
+          'storedData = x;' +
+        '}' +
+        'function get() constant returns (uint retVal) {' +
+          'return storedData;' +
+        '}' +
+      '}';
+
+      var privkey =
+        "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
+      //This needs to be generated for the user
+
+      function deployContract(code) {
+        Solidity(code).then(function (v) {
+          newContract(privkey);
+        });
+      }
+
+      function setValue(num) {
+        Solidity(code).then(function (contract) {
+          contract.state.set(num);
+        });
+      }
+      function getValue() {
+        Solidity(code).then(function (contract) {
+          console.log(contract.state.get());
+        });
+      }
+    </script>
+  </head>
+  <body onload="">
+    <div>
+      Balance Account A: <span id="balanceA"></span>
+    </div>
+    <div>
+      Balance Account B: <span id="balanceB"></span>
+      <button onclick="getEthers(privkeyFrom)">Get Ethers</button>
+    </div>
+    <button onclick="sendEthers()">Send Ethers</button>
+  </body>
+</html>
