@@ -14,17 +14,10 @@
           document.getElementById("balance").innerHTML = balance.toString();
         });
       }
-
-      function getEthers() {
-        faucet(address).then(function () {
-          updateBalance();
-        });
-      }
     </script>
   </head>
   <body onload="updateBalance()">
     Balance:
     <span id="balance"></span>
-    <button onclick="getEthers()">Get Ethers</button>
   </body>
 </html>

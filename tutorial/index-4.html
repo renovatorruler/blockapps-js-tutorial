@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type="text/javascript" src="libs/blockapps.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      //In this step we will try to send some ethers from one account to another
+      var blockapps = require('blockapps-js');
+      var faucet = blockapps.routes.faucet;
+      var Account = blockapps.ethbase.Account;
+      var Transaction = blockapps.ethbase.Transaction;
+      var ethValue = blockapps.ethbase.Units.ethValue
+
+      var addressTo = "0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3"
+      var privkeyFrom = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281"
+
+      function sendEthers() {
+        var tx = Transaction({
+          "value": ethValue(1).in("ether")
+        });
+
+        tx.send(privkeyFrom, addressTo).then(function (result) {
+          console.log(result);
+          updateBalance();
+        });
+      }
+
+      function updateBalance() {
+        Account(addressTo).balance.then(function (balance) {
+          $("#balanceA").html(balance.toString());
+        });
+        Account(privkeyFrom).balance.then(function (balance) {
+          $("#balanceB").html(balance.toString());
+        });
+      }
+
+      function getEthers(address) {
+        faucet(address).then(function () {
+          updateBalance();
+        });
+      }
+    </script>
+  </head>
+  <body onload="updateBalance()">
+    <div>
+      Balance Account A: <span id="balanceA"></span>
+    </div>
+    <div>
+      Balance Account B: <span id="balanceB"></span>
+      <button onclick="getEthers(privkeyFrom)">Get Ethers</button>
+    </div>
+    <button onclick="sendEthers()">Send Ethers</button>
+  </body>
+</html>
