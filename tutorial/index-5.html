@@ -21,9 +21,12 @@
         "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
       //This needs to be generated for the user
 
-      function deployContract(code) {
-        Solidity(code).then(function (v) {
-          newContract(privkey);
+      function deployContract(key) {
+        var c = $("#contractCode").val();
+        console.log(c);
+        Solidity(c).then(function (v) {
+            console.log(v);
+            //newContract(privkey);
         });
       }
 
@@ -37,16 +40,26 @@
           console.log(contract.state.get());
         });
       }
-    </script>
+
+      function initialize() {
+      }
+      </script>
   </head>
-  <body onload="">
+  <body onload="initialize()">
+      <textarea id="contractCode"cols="40" rows="15">
+contract SimpleStorage {
+    uint storedData;
+    function set(uint x) {
+        storedData = x;
+    }
+    function get() constant returns (uint retVal) {
+        return storedData;
+    }
+}
+      </textarea>
     <div>
-      Balance Account A: <span id="balanceA"></span>
+      Deploy Contract: 
+      <button onclick="deployContract(privkey)">Deploy</button>
     </div>
-    <div>
-      Balance Account B: <span id="balanceB"></span>
-      <button onclick="getEthers(privkeyFrom)">Get Ethers</button>
-    </div>
-    <button onclick="sendEthers()">Send Ethers</button>
   </body>
 </html>
