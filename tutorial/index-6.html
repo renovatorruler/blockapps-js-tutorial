@@ -25,17 +25,31 @@
       function deployContract(key) {
         Solidity(code).then(function (v) {
           v.newContract(privkey).then(function (r) {
-            $("#deploymentAddress").html(r.account.address.toString());
+            //r.set();
+            console.log(r, r.account.address.toString());
           });
         });
       }
+
+      function setValue(num) {
+        Solidity(code).then(function (contract) {
+          contract.state.set(num);
+        });
+      }
+      function getValue() {
+        Solidity(code).then(function (contract) {
+          console.log(contract.state.get());
+        });
+      }
+
+      function initialize() {
+      }
       </script>
   </head>
-  <body>
+  <body onload="initialize()">
     <div>
       Deploy Contract: 
       <button onclick="deployContract(privkey)">Deploy</button>
     </div>
-    <div id="deploymentAddress"></div>
   </body>
 </html>
