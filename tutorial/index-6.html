@@ -8,6 +8,8 @@
       blockapps.query.serverURI = "http://strato-dev2.blockapps.net"
       var Solidity = blockapps.Solidity;
 
+      var contractObj;
+
       var code = 'contract SimpleStorage {' +
         'uint storedData;' +
         'function set(uint x) {' +
@@ -23,33 +25,42 @@
       //This needs to be generated for the user using API
 
       function deployContract(key) {
-        Solidity(code).then(function (v) {
-          v.newContract(privkey).then(function (r) {
-            //r.set();
-            console.log(r, r.account.address.toString());
+        return Solidity(code).then(function (v) {
+          return v.newContract(privkey).then(function (r) {
+            $("#contractAddress").html(r.account.address.toString());
+            contractObj = r;
+            return r;
           });
         });
       }
 
-      function setValue(num) {
-        Solidity(code).then(function (contract) {
-          contract.state.set(num);
-        });
+      function setValue() {
+          if(contractObj) {
+              var val = parseInt($("#value").val(), 10);
+              contractObj.state.set(val).callFrom(privkey).then(function (r) {
+                  console.log(r);
+              });
+          }
       }
       function getValue() {
-        Solidity(code).then(function (contract) {
-          console.log(contract.state.get());
-        });
+          if(contractObj) {
+              contractObj.state.get().callFrom(privkey).then(function (v) {
+                  console.log(v);
+                  $("#contractValue").html(v);
+              });
+          }
       }
 
       function initialize() {
+          deployContract(privkey);
       }
       </script>
   </head>
   <body onload="initialize()">
     <div>
-      Deploy Contract: 
-      <button onclick="deployContract(privkey)">Deploy</button>
+        Deploy Contract: <span id="contractAddress"></span>
     </div>
+    <input type="text" id="value"/><button onClick="setValue()">Set</button>
+    <button onClick="getValue()">Get</button>
   </body>
 </html>
