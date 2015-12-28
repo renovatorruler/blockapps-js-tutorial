@@ -35,32 +35,29 @@
       }
 
       function setValue() {
-          if(contractObj) {
-              var val = parseInt($("#value").val(), 10);
-              contractObj.state.set(val).callFrom(privkey).then(function (r) {
-                  console.log(r);
-              });
-          }
+          var val = $("#value").val();
+          contractObj.state.set(val).callFrom(privkey);
       }
       function getValue() {
-          if(contractObj) {
-              contractObj.state.get().callFrom(privkey).then(function (v) {
-                  console.log(v);
-                  $("#contractValue").html(v);
-              });
-          }
+          contractObj.state.get().callFrom(privkey).then(function (v) {
+              $("#retrievedValue").html(v.toString());
+          });
       }
 
-      function initialize() {
-          deployContract(privkey);
-      }
+      deployContract(privkey);
       </script>
   </head>
-  <body onload="initialize()">
-    <div>
-        Deploy Contract: <span id="contractAddress"></span>
-    </div>
-    <input type="text" id="value"/><button onClick="setValue()">Set</button>
-    <button onClick="getValue()">Get</button>
+  <body>
+      <div>
+          Deploy Contract: <span id="contractAddress"></span>
+      </div>
+      <div>
+          <button onClick="setValue()">Set</button>
+          <input type="text" id="value"/>
+      </div>
+      <div>
+          <button onClick="getValue()">Get</button>
+          <span id="retrievedValue">&lt;empty&gt;</span>
+      </div>
   </body>
 </html>
