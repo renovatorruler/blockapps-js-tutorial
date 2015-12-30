@@ -1,27 +1,20 @@
 import React from 'react'
-import AceEditor from 'react-ace'
-
-import 'brace/mode/javascript'
-import 'brace/theme/github'
+import GetBalanceView from 'views/blockapps-intro/GetBalanceView'
 
 export class StepView extends React.Component {
+    constructor (props) {
+      super(props)
+      this.state = {step: parseInt(props.params.step, 10)}
+    }
+
     static propTypes = {
       params: React.PropTypes.object.isRequired
-    }
-    onChange (newValue) {
-      console.log('changed', newValue)
     }
     render () {
       return (
           <div>
-            <AceEditor
-                mode='javascript'
-                theme='github'
-                height='400'
-                onChange={this.onChange}
-                name='Step{this.props.params.step}'
-            />
-            <p>This is the page { this.props.params.step } of the tutorial</p>
+            <GetBalanceView step={ this.state.step } />
+            <p>This is the page { this.state.step } of the tutorial</p>
           </div>
       )
     }
