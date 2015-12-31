@@ -5,27 +5,14 @@ import 'brace/mode/html'
 import 'brace/mode/javascript'
 import 'brace/theme/monokai'
 
-export class GetBalanceView extends React.Component {
+export class IncludeLibraryView extends React.Component {
     static defaultProps = {
+      userCode: `<script type="text/javascript" src="libs/blockapps-min.js"></script>`,
       code: `<html>
   <head>
-    <script type="text/javascript" src="libs/blockapps-min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript">
-      //This example showcases simple address fetching
-      var blockapps = require('blockapps-js');
-      var Account = blockapps.ethbase.Account;
-
-      var address = '0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3'
-
-      Account(address).balance.then(function (balance) {
-        $('balance').innerHTML = balance.toString();
-      });
-    </script>
+  [ADD THE SCRIPT TAG HERE]
   </head>
   <body>
-    Balance:
-    <span id="balance"></span>
   </body>
 </html>`
     }
@@ -39,6 +26,8 @@ export class GetBalanceView extends React.Component {
     }
     onLoad (editor) {
       editor.renderer.setScrollMargin(10, 10, 10, 10)
+      editor.getSession().setUseWorker(false)
+      editor.moveCursorTo(2, 0)
     }
     render () {
       return (
@@ -53,10 +42,10 @@ export class GetBalanceView extends React.Component {
                 height='25em'
                 editorProps={{$blockScrolling: true}}
                 value={this.props.code}
-            >Hello</AceEditor>
+            />
           </div>
       )
     }
 }
 
-export default GetBalanceView
+export default IncludeLibraryView

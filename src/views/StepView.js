@@ -1,5 +1,6 @@
 import React from 'react'
 import GetBalanceView from 'views/blockapps-intro/GetBalanceView'
+import IncludeLibraryView from 'views/blockapps-intro/IncludeLibraryView'
 
 export class StepView extends React.Component {
     constructor (props) {
@@ -11,9 +12,15 @@ export class StepView extends React.Component {
       params: React.PropTypes.object.isRequired
     }
     render () {
+      let view
+      if (this.state.step === 1) {
+        view = <IncludeLibraryView step={this.state.step} />
+      } else if (this.state.step === 2) {
+        view = <GetBalanceView step={this.state.step} />
+      }
       return (
           <div>
-            <GetBalanceView step={ this.state.step } />
+            {view}
             <p>This is the page { this.state.step } of the tutorial</p>
           </div>
       )
