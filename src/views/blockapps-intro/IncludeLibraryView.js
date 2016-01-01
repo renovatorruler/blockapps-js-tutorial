@@ -32,6 +32,8 @@ export class IncludeLibraryView extends React.Component {
     render () {
       return (
           <div>
+            <div>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div>{this.props.userCode}</div>
             <AceEditor
                 mode='html'
                 theme='monokai'
