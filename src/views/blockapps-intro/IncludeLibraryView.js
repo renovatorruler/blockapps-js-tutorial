@@ -10,8 +10,8 @@ import 'highlight.js/styles/default.css'
 
 export class IncludeLibraryView extends React.Component {
     static defaultProps = {
-      userCode: `<script type="text/javascript" src="libs/blockapps-min.js"></script>`,
-      code: `<html>
+      codeBlock: `<script type="text/javascript" src="libs/blockapps-min.js"></script>`,
+      template: `<html>
   <head>
     [ADD THE SCRIPT TAG HERE]
   </head>
@@ -20,37 +20,71 @@ export class IncludeLibraryView extends React.Component {
 </html>`
     }
 
+    constructor (props) {
+      super(props)
+      this.state = {
+        userCode: this.props.template
+      }
+      this.handleProceed = this.handleProceed.bind(this)
+      this.onEditorLoad = this.onEditorLoad.bind(this)
+      this.onEditorChange = this.onEditorChange.bind(this)
+    }
+
+    static state = {
+      userCode: 'usercode'
+    }
+
     static propTypes = {
       step: React.PropTypes.number.isRequired,
-      userCode: React.PropTypes.string,
-      code: React.PropTypes.string
+      codeBlock: React.PropTypes.string,
+      template: React.PropTypes.string
     }
-    onChange (newValue) {
-      console.log('changed', newValue)
+
+    onEditorChange (newValue) {
+      this.state.userCode = newValue
     }
-    onLoad (editor) {
+
+    onEditorLoad (editor) {
       editor.renderer.setScrollMargin(10, 10, 10, 10)
       editor.getSession().setUseWorker(false)
       editor.moveCursorTo(2, 0)
     }
+
+    handleProceed () {
+      console.log(this.state.userCode)
+    }
+
     render () {
       return (
-          <div>
-            <div>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
-            <Hightlight className='html'>{this.props.userCode}</Hightlight>
-            <AceEditor
-                mode='html'
-                theme='monokai'
-                onChange={this.onChange}
-                onLoad={this.onLoad}
-                name='editor'
-                width='80em'
-                height='25em'
-                editorProps={{$blockScrolling: true}}
-                value={this.props.code}
-            />
+        <div>
+          <div className='row'>
+            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
+            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
           </div>
+          <div className='row'>
+              <div className='col-md-8'>
+                <Hightlight className='html'>{this.props.codeBlock}</Hightlight>
+              </div>
+              <div className='col-md-4'>
+                <button className='btn btn-success' onClick={this.handleProceed}>I installed the Blockapps Library &raquo;</button>
+              </div>
+          </div>
+          <div className='row'>
+            <div className='col-md-12'>
+                <AceEditor
+                    mode='html'
+                    theme='monokai'
+                    onChange={this.onEditorChange}
+                    onEditorLoad={this.onEditorLoad}
+                    width='100%'
+                    height='15em'
+                    name='editor'
+                    editorProps={{$blockScrolling: true}}
+                    value={this.props.template}
+                />
+            </div>
+          </div>
+        </div>
       )
     }
 }
