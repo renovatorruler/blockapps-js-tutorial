@@ -9,14 +9,16 @@ export class StepView extends React.Component {
     }
 
     static propTypes = {
+      history: React.PropTypes.object,
       params: React.PropTypes.object.isRequired
     }
+
     render () {
       let view
       if (this.state.step === 1) {
-        view = <IncludeLibraryView step={this.state.step} />
+        view = <IncludeLibraryView step={this.state.step} history={this.props.history} />
       } else if (this.state.step === 2) {
-        view = <GetBalanceView step={this.state.step} />
+        view = <GetBalanceView step={this.state.step} history={this.props.history}/>
       }
       return (
           <div>
