@@ -66,6 +66,7 @@ export class IncludeLibraryView extends React.Component {
         startAnchor = new Anchor(this.state.doc, area[0], area[1])
         endAnchor = new Anchor(this.state.doc, area[2], area[3])
         editableRange = Range.fromPoints(startAnchor.getPosition(), endAnchor.getPosition())
+        editor.getSession().addMarker(editableRange, 'ace_active-line', 'fullline')
         this.state.editableRanges.push(editableRange)
       }
 
@@ -113,6 +114,7 @@ export class IncludeLibraryView extends React.Component {
                     theme='github'
                     onChange={this.onEditorChange}
                     onLoad={this.onEditorLoad}
+                    highlightActiveLine={false}
                     width='100%'
                     height='15em'
                     name='includeLibraryEditor'
