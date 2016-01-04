@@ -43,6 +43,7 @@ export class IncludeLibraryView extends React.Component {
     }
 
     static propTypes = {
+      history: React.PropTypes.object,
       step: React.PropTypes.number.isRequired,
       codeBlock: React.PropTypes.string,
       editableArea: React.PropTypes.array,
@@ -89,7 +90,12 @@ export class IncludeLibraryView extends React.Component {
     }
 
     handleProceed () {
-      console.log(this.state.userCode)
+      let userInput = this.state.userCode.split('\n')[2].trim()
+      if (userInput === this.props.codeBlock) {
+        this.props.history.push('/tutorial/step/2')
+      } else {
+        this.state.invalidInput = true
+      }
     }
 
     render () {
