@@ -23,6 +23,7 @@
   "author": "Prashant Singh Pawar <prashantpawar@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "cssnano": "^3.3.2",
     "debug": "^2.2.0",
     "dotenv": "^1.2.0",
