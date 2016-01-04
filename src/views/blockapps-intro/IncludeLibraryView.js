@@ -29,7 +29,7 @@ export class IncludeLibraryView extends React.Component {
       super(props)
       this.state = {
         editor: {},
-        anchors: [],
+        editableRanges: [],
         userCode: this.props.template
       }
       this.handleProceed = this.handleProceed.bind(this)
@@ -61,11 +61,12 @@ export class IncludeLibraryView extends React.Component {
       editor.getSession().setUseWorker(false)
       editor.moveCursorTo(2, 0)
 
-      let startAnchor, endAnchor
+      let startAnchor, endAnchor, editableRange
       for (let area of this.props.editableArea) {
         startAnchor = new Anchor(this.state.doc, area[0], area[1])
         endAnchor = new Anchor(this.state.doc, area[2], area[3])
-        this.state.anchors.push([startAnchor, endAnchor])
+        editableRange = Range.fromPoints(startAnchor.getPosition(), endAnchor.getPosition())
+        this.state.editableRanges.push(editableRange)
       }
 
       editor.keyBinding.addKeyboardHandler({
@@ -78,9 +79,7 @@ export class IncludeLibraryView extends React.Component {
 
       const cursorPosition = this.state.editor.getCursorPosition()
       let insideReadOnly = false
-      let editableRange
-      for (let anchor of this.state.anchors) {
-        editableRange = Range.fromPoints(anchor[0].getPosition(), anchor[1].getPosition())
+      for (let editableRange of this.state.editableRanges) {
         insideReadOnly = !editableRange.contains(cursorPosition.row, cursorPosition.column)
       }
       if (insideReadOnly) {
