@@ -4,7 +4,7 @@ import Hightlight from 'react-highlight'
 
 import 'brace/mode/html'
 import 'brace/mode/javascript'
-import 'brace/theme/monokai'
+import 'brace/theme/github'
 
 import 'highlight.js/styles/default.css'
 
@@ -73,7 +73,7 @@ export class IncludeLibraryView extends React.Component {
             <div className='col-md-12'>
                 <AceEditor
                     mode='html'
-                    theme='monokai'
+                    theme='github'
                     onChange={this.onEditorChange}
                     onEditorLoad={this.onEditorLoad}
                     width='100%'
