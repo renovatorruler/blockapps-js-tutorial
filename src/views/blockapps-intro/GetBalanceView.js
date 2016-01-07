@@ -31,7 +31,6 @@ export class GetBalanceView extends React.Component {
     }
 
     static propTypes = {
-      step: React.PropTypes.number.isRequired,
       code: React.PropTypes.string
     }
     onChange (newValue) {
@@ -53,7 +52,7 @@ export class GetBalanceView extends React.Component {
                 height='25em'
                 editorProps={{$blockScrolling: true}}
                 value={this.props.code}
-            >Hello</AceEditor>
+            ></AceEditor>
           </div>
       )
     }

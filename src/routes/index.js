@@ -3,7 +3,8 @@ import { Route, IndexRoute } from 'react-router'
 import CoreLayout from 'layouts/CoreLayout'
 import HomeView from 'views/HomeView'
 import TutorialView from 'views/TutorialView'
-import StepView from 'views/StepView'
+import IncludeLibraryView from 'views/blockapps-intro/IncludeLibraryView'
+import GetBalanceView from 'views/blockapps-intro/GetBalanceView'
 import AboutView from 'views/AboutView'
 
 export default (
@@ -11,7 +12,8 @@ export default (
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
     <Route path='/tutorial' component={TutorialView}>
-        <Route path='step/:step' component={StepView}/>
+        <Route path='step/1' component={IncludeLibraryView}/>
+        <Route path='step/2' component={GetBalanceView}/>
     </Route>
   </Route>
 )

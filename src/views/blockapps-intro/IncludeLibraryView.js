@@ -44,7 +44,6 @@ export class IncludeLibraryView extends React.Component {
 
     static propTypes = {
       history: React.PropTypes.object,
-      step: React.PropTypes.number.isRequired,
       codeBlock: React.PropTypes.string,
       editableArea: React.PropTypes.array,
       template: React.PropTypes.string
