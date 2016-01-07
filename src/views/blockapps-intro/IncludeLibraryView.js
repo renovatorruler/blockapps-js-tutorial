@@ -14,6 +14,7 @@ const Range = Ace.acequire('ace/range').Range
 
 export class IncludeLibraryView extends React.Component {
     static defaultProps = {
+      step: 1,
       codeBlock: `<script type="text/javascript" src="libs/blockapps-min.js"></script>`,
       editableArea: [[2, 0, 3, 0]],
       template: `<html>
@@ -43,6 +44,7 @@ export class IncludeLibraryView extends React.Component {
     }
 
     static propTypes = {
+      step: React.PropTypes.number,
       history: React.PropTypes.object,
       codeBlock: React.PropTypes.string,
       editableArea: React.PropTypes.array,
