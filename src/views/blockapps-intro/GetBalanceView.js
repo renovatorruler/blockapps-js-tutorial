@@ -7,6 +7,7 @@ import 'brace/theme/monokai'
 
 export class GetBalanceView extends React.Component {
     static defaultProps = {
+      step: 2,
       code: `<html>
   <head>
     <script type="text/javascript" src="libs/blockapps-min.js"></script>
@@ -31,7 +32,7 @@ export class GetBalanceView extends React.Component {
     }
 
     static propTypes = {
-      step: React.PropTypes.number.isRequired,
+      step: React.PropTypes.number,
       code: React.PropTypes.string
     }
     onChange (newValue) {
@@ -53,7 +54,7 @@ export class GetBalanceView extends React.Component {
                 height='25em'
                 editorProps={{$blockScrolling: true}}
                 value={this.props.code}
-            >Hello</AceEditor>
+            />
           </div>
       )
     }

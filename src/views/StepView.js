@@ -1,28 +1,26 @@
 import React from 'react'
-import GetBalanceView from 'views/blockapps-intro/GetBalanceView'
-import IncludeLibraryView from 'views/blockapps-intro/IncludeLibraryView'
 
 export class StepView extends React.Component {
     constructor (props) {
       super(props)
-      this.state = {step: parseInt(props.params.step, 10)}
+      const childProps = props.children.props
+      this.state = {step: parseInt(childProps.step, 10)}
     }
 
     static propTypes = {
+      children: React.PropTypes.element,
       history: React.PropTypes.object,
-      params: React.PropTypes.object.isRequired
+      step: React.PropTypes.number
+    }
+
+    componentWillReceiveProps (nextProps) {
+      this.setState({step: nextProps.children.props.step})
     }
 
     render () {
-      let view
-      if (this.state.step === 1) {
-        view = <IncludeLibraryView step={this.state.step} history={this.props.history} />
-      } else if (this.state.step === 2) {
-        view = <GetBalanceView step={this.state.step} history={this.props.history}/>
-      }
       return (
           <div>
-            {view}
+            {this.props.children}
             <p>This is the page { this.state.step } of the tutorial</p>
           </div>
       )
