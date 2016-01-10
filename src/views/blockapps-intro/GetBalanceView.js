@@ -2,6 +2,7 @@ import React from 'react'
 import AceEditor from 'react-ace'
 import Hightlight from 'react-highlight'
 import Ace from 'brace'
+import BaseView from './BaseView'
 
 import 'brace/mode/html'
 import 'brace/mode/javascript'
@@ -12,7 +13,7 @@ import 'highlight.js/styles/default.css'
 const Anchor = Ace.acequire('ace/anchor').Anchor
 const Range = Ace.acequire('ace/range').Range
 
-export class GetBalanceView extends React.Component {
+export class GetBalanceView extends BaseView {
     static defaultProps = {
       step: 2,
       codeBlock: `Account(address).balance.then(function (balance) {
