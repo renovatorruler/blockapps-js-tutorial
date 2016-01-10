@@ -38,15 +38,16 @@ export class BaseView extends React.Component {
 
     onEditorLoad (editor) {
       this.state.editor = editor
-      this.state.doc = editor.getSession().getDocument()
+      this.state.document = editor.getSession().getDocument()
 
       editor.renderer.setScrollMargin(10, 10, 10, 10)
       editor.getSession().setUseWorker(false)
 
       let startAnchor, endAnchor, editableRange
       for (let area of this.props.editableArea) {
-        startAnchor = new Anchor(this.state.doc, area[0], area[1])
-        endAnchor = new Anchor(this.state.doc, area[2], area[3])
+        startAnchor = new Anchor(this.state.document, area[0], area[1])
+        startAnchor.$insertRight = true
+        endAnchor = new Anchor(this.state.document, area[2], area[3])
         editableRange = Range.fromPoints(startAnchor.getPosition(), endAnchor.getPosition())
         editor.getSession().addMarker(editableRange, 'ace_active-line', 'fullline')
         this.state.boundaryAnchors.push({
@@ -60,6 +61,16 @@ export class BaseView extends React.Component {
       editor.keyBinding.addKeyboardHandler({
         handleKeyboard: this.handleKeyboard
       })
+    }
+
+    extractText () {
+      let extractedText = []
+      let editableRange
+      for (let boundaryAnchor of this.state.boundaryAnchors) {
+        editableRange = Range.fromPoints(boundaryAnchor.start.getPosition(), boundaryAnchor.end.getPosition())
+        extractedText.push(this.state.document.getTextRange(editableRange))
+      }
+      return extractedText
     }
 
     handleKeyboard (data, hash, keyString, keyCode, event) {
