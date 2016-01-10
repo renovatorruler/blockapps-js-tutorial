@@ -27,7 +27,7 @@
     "cssnano": "^3.3.2",
     "debug": "^2.2.0",
     "dotenv": "^1.2.0",
-    "highlight.js": "^8.4.0",
+    "highlight.js": "~8.4.0",
     "history": "1.13.1",
     "react": "^0.14.0",
     "react-ace": "^3.0.0",
