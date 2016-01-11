@@ -2,6 +2,7 @@ import React from 'react'
 import AceEditor from 'react-ace'
 import Hightlight from 'react-highlight'
 import BaseView from './BaseView'
+import JSValidator from '../../components/JSValidator'
 
 import 'brace/mode/html'
 import 'brace/mode/javascript'
@@ -12,6 +13,11 @@ import 'highlight.js/styles/default.css'
 export class GetBalanceView extends BaseView {
     static defaultProps = {
       step: 2,
+      validationCode: function () {
+        Account(_).balance.then(function (_) {
+          _
+        });
+      },
       codeBlock: `Account(address).balance.then(function (balance) {
   $('balance').innerHTML = balance.toString();
 });`,
@@ -43,11 +49,10 @@ export class GetBalanceView extends BaseView {
     }
 
     handleProceed () {
-      let userInput = this.state.userCode.split('\n')[11].trim()
-      if (userInput === this.props.codeBlock) {
-        this.props.history.push('/tutorial/step/' + (this.props.step + 1))
-      } else {
-        this.state.invalidInput = true
+      let userInput = this.extractText()
+      let validationResult = JSValidator.validate(userInput[0], this.props.validationCode)
+      if (validationResult) {
+        this.proceedToNextStep()
       }
     }
 

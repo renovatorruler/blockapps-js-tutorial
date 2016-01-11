@@ -63,6 +63,10 @@ export class BaseView extends React.Component {
       })
     }
 
+    proceedToNextStep () {
+      this.props.history.push('/tutorial/step/' + (this.props.step + 1))
+    }
+
     extractText () {
       let extractedText = []
       let editableRange
