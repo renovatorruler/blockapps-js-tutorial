@@ -5,6 +5,7 @@ import HomeView from 'views/HomeView'
 import TutorialView from 'views/TutorialView'
 import IncludeLibraryView from 'views/blockapps-intro/IncludeLibraryView'
 import GetBalanceView from 'views/blockapps-intro/GetBalanceView'
+import UseFaucetView from 'views/blockapps-intro/UseFaucetView'
 import StepView from 'views/StepView'
 import AboutView from 'views/AboutView'
 
@@ -16,6 +17,7 @@ export default (
       <Route path='step' component={StepView}>
         <Route path='1' component={IncludeLibraryView}/>
         <Route path='2' component={GetBalanceView}/>
+        <Route path='3' component={UseFaucetView}/>
       </Route>
     </Route>
   </Route>

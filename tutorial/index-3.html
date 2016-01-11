@@ -4,7 +4,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
       var blockapps = require('blockapps-js');
-      var faucet = blockapps.routes.faucet;
+      var Faucet = blockapps.routes.faucet;
       var Account = blockapps.ethbase.Account;
 
       var address = "0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3"
@@ -16,7 +16,7 @@
       }
 
       function getEthers() {
-        faucet(address).then(function () {
+        Faucet(address).then(function () {
           updateBalance();
         });
       }

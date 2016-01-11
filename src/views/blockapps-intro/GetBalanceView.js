@@ -14,9 +14,9 @@ export class GetBalanceView extends BaseView {
     static defaultProps = {
       step: 2,
       validationCode: function () {
-        Account(_).balance.then(function (_) {
+        Account(_).balance.then(function (_) { // eslint-disable-line no-undef
           _
-        });
+        }); // eslint-disable-line semi
       },
       codeBlock: `Account(address).balance.then(function (balance) {
   $('balance').innerHTML = balance.toString();
@@ -33,11 +33,13 @@ export class GetBalanceView extends BaseView {
 
       var address = '0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3'
 
-      [ADD balance() HERE]
+      function updateBalance() {
+        [ADD balance() HERE]
+      }
 
     </script>
   </head>
-  <body>
+  <body onload="updateBalance()">
     Balance:
     <span id="balance"></span>
   </body>
