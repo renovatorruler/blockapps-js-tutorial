@@ -30,7 +30,7 @@ export class IncludeLibraryView extends BaseView {
     handleProceed () {
       let userInput = this.state.userCode.split('\n')[2].trim()
       if (userInput === this.props.codeBlock) {
-        this.props.history.push('/tutorial/step/' + (this.props.step + 1))
+        this.proceedToNextStep()
       } else {
         this.state.invalidInput = true
       }
