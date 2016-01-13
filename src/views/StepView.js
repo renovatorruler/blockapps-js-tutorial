@@ -1,4 +1,5 @@
 import React from 'react'
+import ProgressBar from 'views/ProgressBar'
 
 export class StepView extends React.Component {
     constructor (props) {
@@ -20,6 +21,7 @@ export class StepView extends React.Component {
     render () {
       return (
           <div>
+            <ProgressBar />
             {this.props.children}
             <p>This is the page { this.state.step } of the tutorial</p>
           </div>
