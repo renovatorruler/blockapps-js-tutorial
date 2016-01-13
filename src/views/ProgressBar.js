@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router'
 import styles from './ProgressBar.scss'
+import ClassNames from 'classnames'
 
 export class ProgressBar extends React.Component {
     static defaultProps = {
       totalSteps: 4,
-      currentStep: 3
+      currentStep: 1
     }
 
     static propTypes = {
@@ -15,18 +15,19 @@ export class ProgressBar extends React.Component {
 
     render () {
       let steps = []
-      let className, url
+      let step
       for (let i = 1; i <= this.props.totalSteps; i++) {
-        className = 'btn btn-primary'
-        url = '/tutorial/step/' + i
-        if (i === this.props.currentStep) {
-          className += ' active'
-        }
-        steps.push(<li key={i} style={styles['step']} className={className}><Link to={url}>{i}</Link></li>)
+          step = {index: i}
+          if (i === this.props.currentStep) {
+            step.active = true
+          }
+        steps.push(step)
       }
       return (
         <ul className='progressBar btn-group btn-group-lg'>
-          {steps}
+          {steps.map((step) => 
+            <li key={step.index} className={ClassNames('step btn btn-primary', {active: step.active})}>{step.index}</li>
+          )}
         </ul>
       )
     }
