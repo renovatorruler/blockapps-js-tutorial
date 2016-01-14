@@ -15,7 +15,7 @@ export class UseFaucetView extends BaseView {
       step: 3,
       validationCode: function () {
         Faucet(_).then(function () { // eslint-disable-line no-undef
-          updateBalance();
+          updateBalance(); // eslint-disable-line no-undef, semi
         }); // eslint-disable-line semi
       },
       codeBlock: `Faucet(address).then(function () {
