@@ -25,12 +25,15 @@ export class ProgressBar extends React.Component {
         if (i === this.props.currentStep) {
           step.active = true
         }
+        if (i < this.props.currentStep) {
+          step.completed = true
+        }
         steps.push(step)
       }
       return (
         <div className='progressBar btn-group btn-group-lg'>
           {steps.map((step) =>
-            <Link to={step.url} className={ClassNames('step btn btn-primary', {active: step.active})}>
+            <Link to={step.url} className={ClassNames('step btn', {active: step.active}, {'btn-warning': step.completed}, {'btn-default disabled': !step.completed})}>
             {step.index}
             </Link>
           )}
