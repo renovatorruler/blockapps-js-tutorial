@@ -21,7 +21,7 @@ export class StepView extends React.Component {
     render () {
       return (
           <div>
-            <ProgressBar currentStep={this.state.step}/>
+            <ProgressBar currentStep={this.state.step} totalSteps='10'/>
             {this.props.children}
             <p>This is the page { this.state.step } of the tutorial</p>
           </div>
