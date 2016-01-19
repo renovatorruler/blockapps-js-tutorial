@@ -10,38 +10,58 @@ import 'brace/theme/github'
 
 import 'highlight.js/styles/default.css'
 
-export class GetBalanceView extends BaseView {
+export class DeployContractView extends BaseView {
     static defaultProps = {
-      step: 2,
+      step: 5,
       validationCode: function () {
-        Account(_).balance.then(function (_) { // eslint-disable-line no-undef
-          _
-        }); // eslint-disable-line semi
+        /*eslint-disable */
+        Solidity(code).then(function (_) {
+          _.newContract(privkey).then(function (_) {
+            $("#deploymentAddress").html(r.account.address.toString());
+          });
+        });
+        /*eslint-enable */
       },
-      codeBlock: `Account(address).balance.then(function (balance) {
-  $('balance').innerHTML = balance.toString();
+      codeBlock: `Solidity(code).then(function (v) {
+  v.newContract(privkey).then(function (r) {
+      $("#deploymentAddress").html(r.account.address.toString());
+  });
 });`,
-      editableArea: [[12, 0, 13, 0]],
+      editableArea: [[24, 0, 25, 0]],
       template: `<html>
   <head>
-    <script type="text/javascript" src="libs/blockapps-min.js"></script>
+    <script type="text/javascript" src="libs/blockapps.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
-      //This example showcases simple address fetching
+      //In this step we will deploy a contract
       var blockapps = require('blockapps-js');
-      var Account = blockapps.ethbase.Account;
+      blockapps.query.serverURI = "http://strato-dev2.blockapps.net"
+      var Solidity = blockapps.Solidity;
 
-      var address = '0x16ae8aaf39a18a3035c7bf71f14c507eda83d3e3'
+      var code = 'contract SimpleStorage {' +
+        'uint storedData;' +
+        'function set(uint x) {' +
+          'storedData = x;' +
+        '}' +
+        'function get() constant returns (uint retVal) {' +
+          'return storedData;' +
+        '}' +
+      '}';
 
-      function updateBalance() {
-        [ADD balance() HERE]
+      var privkey = "1dd885a423f4e212740f116afa66d40aafdbb3a381079150371801871d9ea281";
+      //This needs to be generated for the user using API
+
+      function deployContract(key) {
+          [ADD DEPLOY CONTRACT CODE HERE]
       }
-
-    </script>
+      </script>
   </head>
-  <body onload="updateBalance()">
-    Balance:
-    <span id="balance"></span>
+  <body>
+    <div>
+      Deploy Contract:
+      <button onclick="deployContract(privkey)">Deploy</button>
+    </div>
+    <div id="deploymentAddress"></div>
   </body>
 </html>`
     }
@@ -82,7 +102,7 @@ export class GetBalanceView extends BaseView {
                     onLoad={this.onEditorLoad}
                     highlightActiveLine={false}
                     width='85%'
-                    height='30em'
+                    height='37em'
                     name='tutorialEditor'
                     value={this.props.template}
                 />
@@ -93,4 +113,4 @@ export class GetBalanceView extends BaseView {
     }
 }
 
-export default GetBalanceView
+export default DeployContractView
