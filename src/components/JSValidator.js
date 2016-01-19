@@ -1,4 +1,4 @@
-import Structured from 'Structured'
+import Structured from 'structured'
 
 export class JSValidator {
   static validate (code, template) {
