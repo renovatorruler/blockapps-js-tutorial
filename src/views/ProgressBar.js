@@ -33,7 +33,7 @@ export class ProgressBar extends React.Component {
       return (
         <div className='progressBar btn-group btn-group-lg'>
           {steps.map((step) =>
-            <Link to={step.url} className={ClassNames('step btn', {active: step.active}, {'btn-warning': step.completed}, {'btn-default disabled': !step.completed})}>
+            <Link key={step.index} to={step.url} className={ClassNames('step btn', {active: step.active}, {'btn-warning': step.completed}, {'btn-default disabled': !step.completed})}>
             {step.index}
             </Link>
           )}

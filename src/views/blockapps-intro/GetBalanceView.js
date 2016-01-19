@@ -21,7 +21,7 @@ export class GetBalanceView extends BaseView {
       codeBlock: `Account(address).balance.then(function (balance) {
   $('balance').innerHTML = balance.toString();
 });`,
-      editableArea: [[11, 0, 12, 0]],
+      editableArea: [[12, 0, 13, 0]],
       template: `<html>
   <head>
     <script type="text/javascript" src="libs/blockapps-min.js"></script>
