@@ -6,12 +6,14 @@ import { Link } from 'react-router'
 export class ProgressBar extends React.Component {
     static defaultProps = {
       totalSteps: 4,
-      currentStep: 1
+      currentStep: 1,
+      finalStep: false
     }
 
     static propTypes = {
       totalSteps: React.PropTypes.number,
-      currentStep: React.PropTypes.number
+      currentStep: React.PropTypes.number,
+      finalStep: React.PropTypes.boolean
     }
 
     render () {
@@ -30,6 +32,11 @@ export class ProgressBar extends React.Component {
         }
         steps.push(step)
       }
+
+      let finalStepButton
+      if (this.props.finalStep) {
+        finalStepButton = <Link to='/tutorial/finished' className={ClassNames('step btn btn-default')}>>></Link>
+      }
       return (
         <div className='progressBar btn-group btn-group-lg'>
           {steps.map((step) =>
@@ -37,6 +44,7 @@ export class ProgressBar extends React.Component {
             {step.index}
             </Link>
           )}
+          {finalStepButton}
         </div>
       )
     }
