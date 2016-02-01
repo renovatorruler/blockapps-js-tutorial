@@ -1,8 +1,6 @@
 import React from 'react'
 import AceEditor from 'react-ace'
 import Hightlight from 'react-highlight'
-import BaseView from './BaseView'
-import JSValidator from '../../components/JSValidator'
 
 import 'brace/mode/html'
 import 'brace/mode/javascript'
@@ -10,16 +8,9 @@ import 'brace/theme/github'
 
 import 'highlight.js/styles/default.css'
 
-export class InteractContractView extends BaseView {
+export class InteractContractView {
     static defaultProps = {
-      step: 6,
-      validationCode: function () {
-        /*eslint-disable */
-        contractObj.state.set(_).callFrom(_);
-        /*eslint-enable */
-      },
-      codeBlock: 'contractObj.state.set(val).callFrom(privkey);',
-      editableArea: [[38, 0, 39, 0]],
+      step: 7,
       template: `<html>
   <head>
     <script type="text/javascript" src="libs/blockapps.js"></script>
@@ -57,8 +48,8 @@ export class InteractContractView extends BaseView {
       }
 
       function setValue() {
-          var val = $("#value").val();
-          [Add code for calling set() method of the contract]
+        var val = $("#value").val();
+        contractObj.state.set(val).callFrom(privkey);
       }
 
       deployContract(privkey);
@@ -76,31 +67,16 @@ export class InteractContractView extends BaseView {
 </html>`
     }
 
-    constructor (props) {
-      super(props)
-    }
-
-    handleProceed () {
-      let userInput = this.extractText()
-      let validationResult = JSValidator.validate(userInput[0], this.props.validationCode)
-      if (validationResult) {
-        this.props.history.push('/tutorial/finished')
-      }
-    }
-
     render () {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Once deployed, now you can interact with the contract using blockapps-js.</div>
-            <div className='col-md-12'>We will use the deployed contract object to call the set() method.</div>
+            <div className='col-md-12'>Congratulations, you have successfully created your DAPP by deploying a contract and interacting with it.</div>
+            <div className='col-md-12'>You can use blockapps-js library in your own projects. Click below to signup with Blockapps and deploy your own DApps on Ethereum network.</div>
           </div>
           <div className='row'>
-              <div className='col-md-8'>
-                <Hightlight className='javascript'>{this.props.codeBlock}</Hightlight>
-              </div>
               <div className='col-md-4'>
-                <button className='btn btn-success' onClick={this.handleProceed}>I called the contract method</button>
+                <button className='btn btn-success' onClick={this.handleProceed}>Take me to my account</button>
               </div>
           </div>
           <div className='row'>

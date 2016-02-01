@@ -35,7 +35,7 @@ export class ProgressBar extends React.Component {
 
       let finalStepButton
       if (this.props.finalStep) {
-        finalStepButton = <Link to='/tutorial/finished' className={ClassNames('step btn btn-default')}>>></Link>
+        finalStepButton = <Link to='/tutorial/finished' className={ClassNames('step btn btn-default', {active: this.props.currentStep > this.props.totalSteps})}>&#187;</Link>
       }
       return (
         <div className='progressBar btn-group btn-group-lg'>

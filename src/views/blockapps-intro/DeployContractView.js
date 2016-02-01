@@ -82,15 +82,15 @@ export class DeployContractView extends BaseView {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div className='col-md-12'>In order to interact with the Ethereum network, we need to first deploy the contract.</div>
+            <div className='col-md-12'>Using Solidity() object you can compile a Solidity contract via blockapps and then deploy to the Ethereum network.</div>
           </div>
           <div className='row'>
               <div className='col-md-8'>
                 <Hightlight className='javascript'>{this.props.codeBlock}</Hightlight>
               </div>
               <div className='col-md-4'>
-                <button className='btn btn-success' onClick={this.handleProceed}>I installed the Blockapps Library &raquo;</button>
+                <button className='btn btn-success' onClick={this.handleProceed}>I deployed the contract</button>
               </div>
           </div>
           <div className='row'>
