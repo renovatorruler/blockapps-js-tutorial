@@ -9,6 +9,7 @@ import UseFaucetView from 'views/blockapps-intro/UseFaucetView'
 import SendEthersView from 'views/blockapps-intro/SendEthersView'
 import DeployContractView from 'views/blockapps-intro/DeployContractView'
 import InteractContractView from 'views/blockapps-intro/InteractContractView'
+import FinishedView from 'views/blockapps-intro/FinishedView'
 import StepView from 'views/StepView'
 import AboutView from 'views/AboutView'
 
@@ -25,6 +26,7 @@ export default (
         <Route path='5' component={DeployContractView}/>
         <Route path='6' component={InteractContractView}/>
       </Route>
+      <Route path='finished' component={FinishedView}/>
     </Route>
   </Route>
 )
