@@ -71,8 +71,8 @@ export class InteractContractView {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div className='col-md-12'>Congratulations, you have successfully created your DAPP by deploying a contract and interacting with it.</div>
+            <div className='col-md-12'>You can use blockapps-js library in your own projects. Click below to signup with Blockapps and deploy your own DApps on Ethereum network.</div>
           </div>
           <div className='row'>
               <div className='col-md-4'>
