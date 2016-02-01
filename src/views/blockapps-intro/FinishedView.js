@@ -1,6 +1,5 @@
 import React from 'react'
 import AceEditor from 'react-ace'
-import Hightlight from 'react-highlight'
 
 import 'brace/mode/html'
 import 'brace/mode/javascript'
