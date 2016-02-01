@@ -92,15 +92,15 @@ export class InteractContractView extends BaseView {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div className='col-md-12'>Once deployed, now you can interact with the contract using blockapps-js.</div>
+            <div className='col-md-12'>We will use the deployed contract object to call the set() method.</div>
           </div>
           <div className='row'>
               <div className='col-md-8'>
                 <Hightlight className='javascript'>{this.props.codeBlock}</Hightlight>
               </div>
               <div className='col-md-4'>
-                <button className='btn btn-success' onClick={this.handleProceed}>I installed the Blockapps Library &raquo;</button>
+                <button className='btn btn-success' onClick={this.handleProceed}>I called the contract method</button>
               </div>
           </div>
           <div className='row'>

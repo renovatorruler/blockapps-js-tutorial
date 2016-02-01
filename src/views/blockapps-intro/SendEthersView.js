@@ -88,15 +88,14 @@ tx.send(privkeyFrom, addressTo).then(function (result) {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div className='col-md-12'>You can use Transaction() object to send ethers from one account to another.</div>
           </div>
           <div className='row'>
               <div className='col-md-8'>
                 <Hightlight className='javascript'>{this.props.codeBlock}</Hightlight>
               </div>
               <div className='col-md-4'>
-                <button className='btn btn-success' onClick={this.handleProceed}>I installed the Blockapps Library &raquo;</button>
+                <button className='btn btn-success' onClick={this.handleProceed}>I sent the ethers</button>
               </div>
           </div>
           <div className='row'>
@@ -108,7 +107,7 @@ tx.send(privkeyFrom, addressTo).then(function (result) {
                     onLoad={this.onEditorLoad}
                     highlightActiveLine={false}
                     width='85%'
-                    height='32em'
+                    height='65em'
                     name='tutorialEditor'
                     value={this.props.template}
                 />

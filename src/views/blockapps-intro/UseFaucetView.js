@@ -68,15 +68,14 @@ export class UseFaucetView extends BaseView {
       return (
         <div>
           <div className='row'>
-            <div className='col-md-12'>Blockapps relies on a library that you include in your app. This library provides you easy access to Firebase's authentication and database features.</div>
-            <div className='col-md-12'>To get you started we've created an HTML page below. Install Blockapps JavaScript library by adding the following line into the &lt;head&gt; section below: </div>
+            <div className='col-md-12'>To help you get started with development, we provide a faucet (only available on our testnetwork).</div>
           </div>
           <div className='row'>
               <div className='col-md-8'>
                 <Hightlight className='javascript'>{this.props.codeBlock}</Hightlight>
               </div>
               <div className='col-md-4'>
-                <button className='btn btn-success' onClick={this.handleProceed}>I installed the Blockapps Library &raquo;</button>
+                <button className='btn btn-success' onClick={this.handleProceed}>I used the faucet</button>
               </div>
           </div>
           <div className='row'>
@@ -88,7 +87,7 @@ export class UseFaucetView extends BaseView {
                     onLoad={this.onEditorLoad}
                     highlightActiveLine={false}
                     width='85%'
-                    height='32em'
+                    height='40em'
                     name='tutorialEditor'
                     value={this.props.template}
                 />
