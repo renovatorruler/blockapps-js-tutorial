@@ -7,7 +7,7 @@ import 'brace/theme/github'
 
 import 'highlight.js/styles/default.css'
 
-export class InteractContractView {
+export class InteractContractView extends React.Component {
     static defaultProps = {
       step: 7,
       template: `<html>
