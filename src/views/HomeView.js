@@ -8,7 +8,7 @@ export class HomeView extends React.Component {
       <div className='container text-center'>
         <h1>Welcome to Blockapps.js Tutorial</h1>
         <hr />
-        <Link to='/tutorial/step/1'>Go To the Tutorial</Link>
+        <Link to='/blockapps-js-tutorial/tutorial/step/1'>Go To the Tutorial</Link>
       </div>
     )
   }
