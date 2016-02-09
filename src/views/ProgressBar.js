@@ -13,7 +13,7 @@ export class ProgressBar extends React.Component {
     static propTypes = {
       totalSteps: React.PropTypes.number,
       currentStep: React.PropTypes.number,
-      finalStep: React.PropTypes.boolean
+      finalStep: React.PropTypes.bool
     }
 
     render () {
