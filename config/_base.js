@@ -31,7 +31,7 @@ const config = {
   compiler_hash_type       : 'hash',
   compiler_fail_on_warning : false,
   compiler_quiet           : false,
-  compiler_public_path     : './',
+  compiler_public_path     : './blockapps-js-tutorial/',
   compiler_stats           : {
     chunks : false,
     chunkModules : false,
