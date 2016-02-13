@@ -21,13 +21,14 @@
   "gh-pages-deploy": {
     "staticpath": "dist",
     "prep": [
+      "clean",
       "test",
       "compile"
       ],
     "post": [
       "clean-source"
       ],
-    "noprompt": false
+    "noprompt": true
   },
   "repository": {
     "type": "git",
