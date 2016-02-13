@@ -8,8 +8,11 @@ import 'brace/theme/github'
 import 'highlight.js/styles/default.css'
 
 export class InteractContractView extends React.Component {
+    static propTypes = {
+      template: React.PropTypes.string
+    }
+
     static defaultProps = {
-      step: 7,
       template: `<html>
   <head>
     <script type="text/javascript" src="libs/blockapps.js"></script>
