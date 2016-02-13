@@ -14,7 +14,8 @@
     "dev:no-debug": "npm run dev -- --no_debug",
     "test": "node -r dotenv/config ./node_modules/karma/bin/karma start bin/karma.js",
     "test:dev": "npm run test -- --watch",
-    "deploy": "npm run test && npm run compile && gh-pages-deploy",
+    "deploy": "npm run test && npm run compile",
+    "deploy-gh-pages": "gh-pages-deploy",
     "clean-source": "rimraf README.md src webroot package.json"
   },
   "gh-pages-deploy": {
