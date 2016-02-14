@@ -14,7 +14,7 @@ import StepView from 'views/StepView'
 import AboutView from 'views/AboutView'
 
 export default (
-  <Route path='/blockapps-js-tutorial/' component={CoreLayout}>
+  <Route path='/' component={CoreLayout}>
     <IndexRoute component={HomeView} />
     <Route path='/about' component={AboutView} />
     <Route path='/tutorial' component={TutorialView}>
